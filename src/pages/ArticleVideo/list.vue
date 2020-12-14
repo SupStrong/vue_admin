@@ -2,122 +2,98 @@
   <div>
     <div class="G-col-main">
       <el-row :gutter="20">
-        <el-col :span="6"><el-input v-model="input" placeholder="请输入内容"></el-input></el-col>
-        <el-col :span="6"><el-input v-model="input" placeholder="请输入内容"></el-input></el-col>
-        <el-col :span="6">
-          <!-- <el-date-picker
-          v-model="value1"
-          type="daterange"
-          range-separator="至"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期">
-        </el-date-picker> -->
+        <el-col :span="5"><el-input v-model="input" placeholder="请输入内容"></el-input></el-col>
+        <el-col :span="5"><el-input v-model="input" placeholder="请输入内容"></el-input></el-col>
+        <el-col :span="12">
+          <el-button type="primary">搜索</el-button>
         </el-col>
-        <el-col :span="6">
-          <!-- <el-select v-model="value" placeholder="请选择">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select> -->
-        </el-col>
-      </el-row>
-      <el-row class="G-M-top-15">
-        <div class="G-align-center">
-        <el-button type="primary">主要按钮</el-button>
-        <el-button type="primary">主要按钮</el-button>
-        </div>
       </el-row>
     </div>
-    <div class="G-col-main G-M-top-10">
-      <el-row>
-          <el-button type="primary"><router-link :to="{path:'/articleText/details'}">创建文章</router-link></el-button>
+    <div class="G-col-main G-content-main">
+      <el-row class="G-M-top-10 G-M-bottom-10">
+          <el-button type="primary"><router-link :to="{path:'/articleText/details/0'}">创建文章</router-link></el-button>
          <el-button type="success">数据详情</el-button>
       </el-row>
       <el-table
         class="G-M-top-15"
         :data="tableData"
         border
-        fit="true"
-        height="600px"
         style="width: 100%">
         <el-table-column
-          fixed
           prop="id"
           label="文章id"
-          width="180">
+          width="100">
         </el-table-column>
         <el-table-column
-          fixed
+          prop="type"
+          label="类型"
+          width="100">
+        </el-table-column>
+        <el-table-column
           prop="title"
-          label="标题"
-          width="180">
+          label="标题">
         </el-table-column>
         <el-table-column
-          fixed
           prop="create_date"
-          label="创建时间"
-          width="180">
+          label="创建时间">
         </el-table-column>
         <el-table-column
-          fixed
           prop="author"
-          label="作者"
-          width="180">
+          label="作者">
         </el-table-column>
         <el-table-column
-          fixed
           prop="browse"
-          label="浏览人数"
-          width="180">
+          label="浏览人数">
         </el-table-column>
         <el-table-column
-          fixed
           prop="praise"
-          label="点赞人数"
-          width="180">
+          label="点赞人数">
         </el-table-column>
         <el-table-column
-          fixed
           prop="collection"
-          label="收藏人数"
-          width="180">
+          label="收藏人数">
         </el-table-column>
         <el-table-column
-          fixed
           prop="group"
-          label="分组"
-          width="180">
+          label="分组">
         </el-table-column>
         <el-table-column
-          fixed
           prop="tags"
-          label="标签"
-          width="180">
+          label="标签">
+        </el-table-column>
+        
+        <el-table-column
+          label="状态">
+          <template slot-scope="scope">
+            <el-switch
+              v-model="scope.row.status"
+              active-color="#13ce66"
+              active-value="true"
+              inactive-value="false"
+              inactive-color="#999"
+              @change="changeSwitch(scope.row)"
+              >
+            </el-switch>
+          </template>
         </el-table-column>
         <el-table-column
-          fixed="right"
           label="操作"
           width="100">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-            <el-button type="text" size="small">编辑</el-button>
+            <el-button type="text" size="small">
+            <router-link :to="{path:`/articleText/details/${scope.row.id}`}">编辑</router-link>
+            <el-popconfirm title="手别抖!看清楚." @confirm="deleteText(scope.row.id)">
+              <span slot="reference">删除</span>
+            </el-popconfirm>
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination
-        background
-        class="G-M-top-15 G-align-right"
-        layout="prev, pager, next"
-        :total="1000">
-      </el-pagination>
+      <Page :all="count" :page="page" @CurrentPage="getCurrentPage"></page>
     </div>
   </div>
 </template>
 <script>
-import editors from '../../components/asstes/edit.vue';
 export default {
   data() {
       return {
@@ -132,27 +108,53 @@ export default {
           resource: '',
           desc: ''
         },
-        tableData: [{
-          id:'id',
-          title:'标题',
-          create_date:'创建时间',
-          author:'作者',
-          browse:'浏览人数',
-          praise:'点赞人数',
-          collection:'收藏人数',
-          group:'分组',
-          relation:'关联',
-          tags:['1','2','3']
-        }]
+        page:"1",
+        limit:"20",
+        tableData: []
       }
     },
   name:'one',
   components: {
-    editors
   },
   mounted(){
+    this.getData();
   },
   methods:{
+    changeSwitch(row){
+      let switchId = row.id;
+      this.$patch(`/api/articles/${switchId}`,{status:row.status})
+        .then((response) => {
+          let {status,message} = response;
+          if(status){
+             this.$message(message);
+          }
+      })
+    },
+    deleteText(c_id){
+      this.$del(`/api/articles/${c_id}`)
+        .then((response) => {
+          let {status,message} = response;
+          if(status){
+             this.$message(message);
+             this.tableData = this.tableData.filter(item => item.id !== c_id)
+          }
+      })
+    },
+    getData(){
+      let params = {
+        page:this.page,
+        limit:this.limit
+      }
+      this.$fetch('/api/articles',params)
+        .then((response) => {
+          this.count = response.count;
+          this.tableData = response.rows;
+      })
+    },
+    getCurrentPage(val){
+      this.page = val;
+      this.getData();
+    }
   },
   computed: {
   }
@@ -160,7 +162,6 @@ export default {
 </script>
 <style>
   .el-row {
-    margin-top:10px;
   }
   .el-col {
     border-radius: 4px;

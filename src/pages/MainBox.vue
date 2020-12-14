@@ -67,7 +67,6 @@
           </div>
           <div class="r-content"></div>
         </el-header>
-        <tab></tab>
         <el-main>
           <router-view></router-view>
         </el-main>
@@ -76,7 +75,8 @@
   </div>
 </template>
 <script>
-import tab from "../components/tab";
+// <tab></tab>
+// import tab from "../components/tab";
 import { mapState } from "vuex";
 export default {
   name: "mainbox",
@@ -95,8 +95,9 @@ export default {
     return {
       isCollapse: false,
       menulist: [
+        // 营销分组
         {
-          label: "营销管理",
+          label: "营销分组",
           path: "/",
           name: "mainbox",
           icon: "location",
@@ -115,19 +116,67 @@ export default {
             },
           ],
         },
+        // 动物分组
         {
-          label: "车辆管理",
-          path: "/Vehicle",
+          label: "动物分组",
+          path: "/organization",
           icon: "location",
           children: [
             {
-              label: "车辆态势",
-              path: "/Vehicle",
-              name: "vehiclesituation",
+              label: "保护机构列表",
+              path: "/organization/list",
+              name: "articleTextList",
               icon: "location",
             },
-          ],
+            {
+              label: "动物圈子列表",
+              path: "/circle/list",
+              name: "circleList",
+              icon: "location",
+            },
+            {
+              label: "动物单个列表",
+              path: "/animal/list",
+              name: "AnimalList",
+              icon: "location",
+            },
+          ]
         },
+        // 商品分组
+        {
+          label: "商品分组",
+          path: "/goods",
+          icon: "location",
+          children: [
+            {
+              label: "商品列表",
+              path: "/goods/list",
+              name: "goodsList",
+              icon: "location",
+            },
+            {
+              label: "订单列表",
+              path: "/order/list",
+              name: "ordersList",
+              icon: "location",
+            },
+          ]
+        },
+        // 用户分组
+        {
+          label: "用户分组",
+          path: "/User",
+          icon: "location",
+          children: [
+            {
+              label: "用户列表",
+              path: "/user/list",
+              name: "usersList",
+              icon: "location",
+            },
+          ]
+        }
+
       ],
       activeRoute: "/Vehicle",
     };
@@ -155,7 +204,7 @@ export default {
     },
   },
   components: {
-    tab,
+    // tab,
   },
 };
 </script>
@@ -236,7 +285,7 @@ export default {
     align-items: center;
   }
   .tabs {
-    padding: 34px 0 0 10px;
+    padding: 10px 0 0 10px;
   }
 }
 </style>
