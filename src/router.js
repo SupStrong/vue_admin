@@ -32,6 +32,58 @@ const routes = [
                 path: '/articleVideo/details',
                 name: '创建营销视频',
                 component: () => import('./pages/ArticleVideo/details.vue'),
+            },
+            {
+                path: '/organization/list',
+                name: '动物机构列表',
+                component: () => import('./pages/Organization/list.vue'),
+            },
+            {
+                path: '/organization/details',
+                name: '创建动物机构',
+                component: () => import('./pages/Organization/details.vue'),
+            },
+            {
+                path: '/circle/list',
+                name: '动物圈子列表',
+                component: () => import('./pages/Circle/list.vue'),
+            },
+            {
+                path: '/circle/details',
+                name: '创建动物圈子',
+                component: () => import('./pages/Circle/details.vue'),
+            },
+
+            {
+                path: '/animal/list',
+                name: '动物单个列表',
+                component: () => import('./pages/Animal/list.vue'),
+            },
+            {
+                path: '/animal/details',
+                name: '创建动物单个',
+                component: () => import('./pages/Animal/details.vue'),
+            },
+
+            {
+                path: '/goods/list',
+                name: '商品列表',
+                component: () => import('./pages/Goods/list.vue'),
+            },
+            {
+                path: '/goods/details',
+                name: '创建商品',
+                component: () => import('./pages/Goods/details.vue'),
+            },
+            {
+                path: '/order/list',
+                name: '订单列表',
+                component: () => import('./pages/Order/list.vue'),
+            },
+            {
+                path: '/User/list',
+                name: '创建商品',
+                component: () => import('./pages/User/list.vue'),
             }
         ]
     }

@@ -128,7 +128,7 @@
   </div>
 </template>
 <script>
-import editors from '../../components/asstes/edit.vue';
+// import editors from '../../components/asstes/edit.vue';
 export default {
   data() {
       return {
@@ -159,7 +159,7 @@ export default {
     },
   name:'one',
   components: {
-    editors
+    // editors
   },
   mounted(){
   },

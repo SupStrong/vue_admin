@@ -4,37 +4,16 @@
       <el-row :gutter="20">
         <el-col :span="6"><el-input v-model="input" placeholder="请输入内容"></el-input></el-col>
         <el-col :span="6"><el-input v-model="input" placeholder="请输入内容"></el-input></el-col>
-        <el-col :span="6">
-          <!-- <el-date-picker
-          v-model="value1"
-          type="daterange"
-          range-separator="至"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期">
-        </el-date-picker> -->
-        </el-col>
-        <el-col :span="6">
-          <!-- <el-select v-model="value" placeholder="请选择">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select> -->
+        <el-col :span="12">
+          <el-button type="primary">主要按钮</el-button>
+          <el-button type="primary">主要按钮</el-button>
         </el-col>
       </el-row>
-      <el-row class="G-M-top-15">
-        <div class="G-align-center">
-        <el-button type="primary">主要按钮</el-button>
-        <el-button type="primary">主要按钮</el-button>
-        </div>
-      </el-row>
+
     </div>
     <div class="G-col-main G-M-top-10">
       <el-row>
           <el-button type="primary"><router-link :to="{path:'/articleText/details'}">创建文章</router-link></el-button>
-         <el-button type="success">数据详情</el-button>
       </el-row>
       <el-table
         class="G-M-top-15"
@@ -128,7 +107,6 @@
   </div>
 </template>
 <script>
-import editors from '../../components/asstes/edit.vue';
 export default {
   data() {
       return {
@@ -169,7 +147,6 @@ export default {
     },
   name:'one',
   components: {
-    editors
   },
   mounted(){
   },

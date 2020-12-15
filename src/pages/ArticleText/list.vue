@@ -9,8 +9,8 @@
         </el-col>
       </el-row>
     </div>
-    <div class="G-col-main G-M-top-10 G-content-main">
-      <el-row>
+    <div class="G-col-main G-content-main">
+      <el-row class="G-M-top-10 G-M-bottom-10">
           <el-button type="primary"><router-link :to="{path:'/articleText/details/0'}">创建文章</router-link></el-button>
          <el-button type="success">数据详情</el-button>
       </el-row>
@@ -89,14 +89,12 @@
           </template>
         </el-table-column>
       </el-table>
-      <page :all="count" :page="page" @CurrentPage="getCurrentPage"></page>
-      <Pagination></Pagination>
+      <Page :all="count" :page="page" @CurrentPage="getCurrentPage"></page>
     </div>
   </div>
 </template>
 <script>
-import editors from '../../components/asstes/edit.vue';
-import Pagination from '../../components/Pagination.vue';
+import Page from '../../components/asstes/page.vue';
 export default {
   data() {
       return {
@@ -113,66 +111,51 @@ export default {
         },
         page:"1",
         limit:"20",
-        tableData: [{
-          id:'id',
-          title:'标题',
-          create_date:'创建时间',
-          author:'作者',
-          browse:'浏览人数浏览人数浏览人数浏览人数浏览人数1131',
-          praise:'点赞人数',
-          collection:'收藏人数',
-          group:'分组',
-          type:'类型',
-          status:"1",
-          relation:'关联',
-          tags:['1','2','3']
-        }]
+        tableData: []
       }
     },
   name:'one',
   components: {
-    editors,
-    page
   },
   mounted(){
-    // this.getData();
+    this.getData();
   },
   methods:{
-    // changeSwitch(row){
-    //   let switchId = row.id;
-    //   this.$patch(`/api/articles/${switchId}`,{status:row.status})
-    //     .then((response) => {
-    //       let {status,message} = response;
-    //       if(status){
-    //          this.$message(message);
-    //       }
-    //   })
-    // },
-    // deleteText(c_id){
-    //   this.$del(`/api/articles/${c_id}`)
-    //     .then((response) => {
-    //       let {status,message} = response;
-    //       if(status){
-    //          this.$message(message);
-    //          this.tableData = this.tableData.filter(item => item.id !== c_id)
-    //       }
-    //   })
-    // },
-    // getData(){
-    //   let params = {
-    //     page:this.page,
-    //     limit:this.limit
-    //   }
-    //   this.$fetch('/api/articles',params)
-    //     .then((response) => {
-    //       this.count = response.count;
-    //       this.tableData = response.rows;
-    //   })
-    // },
-    // getCurrentPage(val){
-    //   this.page = val;
-    //   this.getData();
-    // }
+    changeSwitch(row){
+      let switchId = row.id;
+      this.$patch(`/api/articles/${switchId}`,{status:row.status})
+        .then((response) => {
+          let {status,message} = response;
+          if(status){
+             this.$message(message);
+          }
+      })
+    },
+    deleteText(c_id){
+      this.$del(`/api/articles/${c_id}`)
+        .then((response) => {
+          let {status,message} = response;
+          if(status){
+             this.$message(message);
+             this.tableData = this.tableData.filter(item => item.id !== c_id)
+          }
+      })
+    },
+    getData(){
+      let params = {
+        page:this.page,
+        limit:this.limit
+      }
+      this.$fetch('/api/articles',params)
+        .then((response) => {
+          this.count = response.count;
+          this.tableData = response.rows;
+      })
+    },
+    getCurrentPage(val){
+      this.page = val;
+      this.getData();
+    }
   },
   computed: {
   }
@@ -180,7 +163,6 @@ export default {
 </script>
 <style>
   .el-row {
-    /* margin-top:10px; */
   }
   .el-col {
     border-radius: 4px;
