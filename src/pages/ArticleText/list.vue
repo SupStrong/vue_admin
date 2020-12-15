@@ -24,12 +24,13 @@
           label="标题">
         </el-table-column>
         <el-table-column
-          prop="author"
-          label="作者">
+          prop="type"
+          label="类型"
+          :formatter="cantype">
         </el-table-column>
         <el-table-column
-          prop="create_time"
-          label="创建时间">
+          prop="group"
+          label="分组">
         </el-table-column>
         <el-table-column
           prop="author"
@@ -47,15 +48,10 @@
           prop="collection"
           label="收藏人数">
         </el-table-column>
-        <el-table-column
-          prop="group"
-          label="分组">
+          <el-table-column
+          prop="create_time"
+          label="创建时间">
         </el-table-column>
-        <el-table-column
-          prop="tags"
-          label="标签">
-        </el-table-column>
-        
         <el-table-column
           label="状态">
           <template slot-scope="scope">
@@ -102,6 +98,9 @@ export default {
     this.getData();
   },
   methods:{
+    cantype(row){
+      return row.type == '1' ? '文章' : '视频'
+    },
     changeSwitch(row){
       let switchId = row.id;
       this.$patch(`/api/articles/${switchId}`,{status:row.status})
