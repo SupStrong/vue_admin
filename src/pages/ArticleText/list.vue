@@ -90,12 +90,13 @@
         </el-table-column>
       </el-table>
       <page :all="count" :page="page" @CurrentPage="getCurrentPage"></page>
+      <Pagination></Pagination>
     </div>
   </div>
 </template>
 <script>
 import editors from '../../components/asstes/edit.vue';
-import page from '../../components/asstes/page.vue';
+import Pagination from '../../components/Pagination.vue';
 export default {
   data() {
       return {

@@ -8,7 +8,7 @@
       @close="handleClose(tag)"
       class="tag"
       @click="tabClick(tag)"
-      :class="currentHref == tag.path ? 'G-color-red' : ''"
+      :class="currentHref == tag.path ? 'G-active' : ''"
     >
       {{ tag.label }}
     </el-tag>
@@ -55,14 +55,15 @@ export default {
     margin-left: 10px;
     background-color: #55906f;
     color:#fff;
+    cursor: pointer;
   }
   .el-tag .el-tag__close{
     color:#fff;
   }
-  .G-color-red{
+  .G-active{
     margin-left: 10px;
-    background-color: #55906f;
-    color:red;
+    background-color: #11e46c;
+    color: white;
   }
 }
 </style>
