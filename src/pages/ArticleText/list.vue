@@ -20,21 +20,15 @@
         border
         style="width: 100%">
         <el-table-column
-          prop="id"
-          label="文章id"
-          width="100">
-        </el-table-column>
-        <el-table-column
-          prop="type"
-          label="类型"
-          width="100">
-        </el-table-column>
-        <el-table-column
           prop="title"
           label="标题">
         </el-table-column>
         <el-table-column
-          prop="create_date"
+          prop="author"
+          label="作者">
+        </el-table-column>
+        <el-table-column
+          prop="create_time"
           label="创建时间">
         </el-table-column>
         <el-table-column
@@ -68,8 +62,8 @@
             <el-switch
               v-model="scope.row.status"
               active-color="#13ce66"
-              active-value="true"
-              inactive-value="false"
+              :active-value="1"
+              :inactive-value="0"
               inactive-color="#999"
               @change="changeSwitch(scope.row)"
               >
@@ -81,34 +75,21 @@
           width="100">
           <template slot-scope="scope">
             <el-button type="text" size="small">
-            <router-link :to="{path:`/articleText/details/${scope.row.id}`}">编辑</router-link>
-            <el-popconfirm title="手别抖!看清楚." @confirm="deleteText(scope.row.id)">
+            <router-link class="G-color-409EFF" :to="{path:`/articleText/details/${scope.row.id}`}">编辑</router-link>
+            <el-popconfirm class="G-M-left-5" title="手别抖!看清楚." @confirm="deleteText(scope.row.id)">
               <span slot="reference">删除</span>
             </el-popconfirm>
             </el-button>
           </template>
         </el-table-column>
       </el-table>
-      <Page :all="count" :page="page" @CurrentPage="getCurrentPage"></page>
     </div>
   </div>
 </template>
 <script>
-import Page from '../../components/asstes/page.vue';
 export default {
   data() {
       return {
-        bg:'',
-        form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        },
         page:"1",
         limit:"20",
         tableData: []

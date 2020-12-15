@@ -20,6 +20,12 @@ body,html{
 .G-M-bottom-20{
     margin-bottom: 20px;
 }
+.G-M-right-5{
+    margin-right: 5px;
+}
+.G-M-left-5{
+    margin-left: 5px;
+}
 .G-P-top-10{
     padding-top: 10px;
 }

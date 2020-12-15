@@ -118,12 +118,6 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination
-        background
-        class="G-M-top-15 G-align-right"
-        layout="prev, pager, next"
-        :total="1000">
-      </el-pagination>
     </div>
   </div>
 </template>

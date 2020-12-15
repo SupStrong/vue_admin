@@ -108,12 +108,6 @@ export default {
               name: "articleTextList",
               icon: "location",
             },
-            {
-              label: "营销视频",
-              path: "/articleVideo/list",
-              name: "articleTextVideo",
-              icon: "location",
-            },
           ],
         },
         // 动物分组
@@ -182,25 +176,25 @@ export default {
     };
   },
   created:function() {
-    this.currentTab();
+    // this.currentTab();
   },
   methods: {
     clickMenu(item) {
       this.$store.commit("selectMenu", item);
     },
     currentTab() {
-      let href = this.$route.path;
-      var allItem = [];
-      this.menulist.map((menu_item) =>{
-        allItem.push(menu_item.children.filter((item) => item.path == href ));
-      })
-      let current = allItem.filter((i) =>{
-        if(i.length != 0){
-          return i;
-        }
-      })
-      this.$store.commit("selectMenu", current[0][0]);
-      return current[0][0];
+      // let href = this.$route.path;
+      // var allItem = [];
+      // this.menulist.map((menu_item) =>{
+      //   allItem.push(menu_item.children.filter((item) => item.path == href ));
+      // })
+      // let current = allItem.filter((i) =>{
+      //   if(i.length != 0){
+      //     return i;
+      //   }
+      // })
+      // this.$store.commit("selectMenu", current[0][0]);
+      // return current[0][0];
     },
   },
   components: {
