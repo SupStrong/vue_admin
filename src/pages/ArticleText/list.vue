@@ -49,6 +49,7 @@
           label="收藏人数">
         </el-table-column>
           <el-table-column
+          width="180px"
           prop="create_time"
           label="创建时间">
         </el-table-column>
