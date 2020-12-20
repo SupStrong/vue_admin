@@ -117,7 +117,7 @@ export default {
     };
   },
   mounted() {
-    let id = this.$route.params.id;
+    let id = this.$route.query.id;
     if (id != 0) {
       this.editGetData(id);
     }
@@ -141,7 +141,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          let currentId = this.$route.params.id;
+          let currentId = this.$route.query.id;
           currentId != 0 ? this.funEditData(currentId) : this.funCreateData();
         } else {
           return false;

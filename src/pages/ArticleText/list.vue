@@ -11,7 +11,7 @@
     </div>
     <div class="G-col-main G-content-main">
       <el-row class="G-M-top-10 G-M-bottom-10">
-          <el-button type="primary"><router-link :to="{path:'/articleText/details/0'}">创建文章</router-link></el-button>
+          <el-button type="primary"><router-link :to="{path:'/articleText/details',query:{id:0}}">创建文章</router-link></el-button>
          <el-button type="success">数据详情</el-button>
       </el-row>
       <el-table
@@ -72,7 +72,7 @@
           width="100">
           <template slot-scope="scope">
             <el-button type="text" size="small">
-            <router-link class="G-color-409EFF" :to="{path:`/articleText/details/${scope.row.id}`}">编辑</router-link>
+            <router-link class="G-color-409EFF" :to="{path:'/articleText/details',query:{id:scope.row.id}}">编辑</router-link>
             <el-popconfirm class="G-M-left-5" title="手别抖!看清楚." @confirm="deleteText(scope.row.id)">
               <span slot="reference">删除</span>
             </el-popconfirm>

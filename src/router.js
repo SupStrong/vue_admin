@@ -18,7 +18,7 @@ const routes = [
                 component: () => import('./pages/ArticleText/list.vue'),
             },
             {
-                path: '/articleText/details/:id',
+                path: '/articleText/details',
                 name: '创建营销文章',
                 component: () => import('./pages/ArticleText/details.vue'),
             },
