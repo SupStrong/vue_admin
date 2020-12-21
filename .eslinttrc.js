@@ -1,22 +1,35 @@
 module.exports = {
     root: true,
     env: {
-        node: true
+      node: true
     },
     'extends': [
-        'plugin:vue/essential',
-        'eslint:recommended'
+      'plugin:vue/essential',
+      '@vue/standard'
     ],
     rules: {
-        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-        'no-undef': 'off',
-        'vue/no-unused-vars': 'off',
-        'vue/require-v-for-key': 'off',
-        'no-unused-vars': 'off',
-        'vue/no-unused-components': 'off'
+      'no-console': 'off',
+      'space-in-parens': 'off',
+      'no-debugger': 'off',
+      'no-mixed-operators': 'off',
+      'eqeqeq': 'off',
+      'no-unused-vars': 'off',
+      'camelcase': 'off',
+      // allow paren-less arrow functions
+      'arrow-parens': 'off',
+      // allow async-await
+      'generator-star-spacing': 'off',
+      // allow debugger during development
+      'object-curly-even-spacing': 'on',
+      'one-var': 'off',
+      'indent': 'off',
+      'vue/no-unused-components': 'off',
+  
+      //  结尾有分号
+      'semi': 0
     },
     parserOptions: {
-        parser: 'babel-eslint'
+      parser: 'babel-eslint'
     }
-};
+  }
+  
