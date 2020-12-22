@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "dev": "cross-env NODE_ENV=dev vue-cli-service serve --open",
+    "prod": "cross-env NODE_ENV=prod vue-cli-service serve --open",
+    "build": "cross-env NODE_ENV=production vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -32,6 +33,7 @@
     "@vue/cli-plugin-router": "^4.5.0",
     "@vue/cli-service": "^4.5.0",
     "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-vue": "^6.2.2",
@@ -54,10 +56,10 @@
     },
     "rules": {
       "generator-star-spacing": "off",
-      "no-tabs":"off",
-      "no-unused-vars":"off",
-      "no-console":"off",
-      "no-irregular-whitespace":"off",
+      "no-tabs": "off",
+      "no-unused-vars": "off",
+      "no-console": "off",
+      "no-irregular-whitespace": "off",
       "no-debugger": "off"
     }
   },

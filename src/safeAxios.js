@@ -1,7 +1,6 @@
 import axios from "axios"
 import Global from './global';
 import { Message } from 'element-ui';
-
 let safeAxios = axios.create({
     baseURL: Global.SERVER_MAIN,
     timeout: 60000,

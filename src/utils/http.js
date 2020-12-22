@@ -1,9 +1,9 @@
 import axios from 'axios';
 import cookie from 'js-cookie'
 import qs from 'qs'
+import env from './env'
 axios.defaults.timeout = 5000;
 axios.defaults.baseURL ='';
-
 
 //http request 拦截器
 axios.interceptors.request.use(
@@ -12,7 +12,7 @@ axios.interceptors.request.use(
     return config;
   },
   error => {
-    return Promise.reject(err);
+    // return Promise.reject(err);
   }
 );
 
@@ -20,10 +20,10 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => {
     if(response.data.errCode ==2){
-      router.push({
-        path:"/login",
-        query:{redirect:router.currentRoute.fullPath}//从哪个页面跳转
-      })
+      // router.push({
+      //   path:"/login",
+      //   query:{redirect:router.currentRoute.fullPath}//从哪个页面跳转
+      // })
     }
     return response;
   },
@@ -39,7 +39,6 @@ axios.interceptors.response.use(
  * @param data
  * @returns {Promise}
  */
-
 export function fetch(url,params={}){
   return new Promise((resolve,reject) => {
     axios.get(url,{
@@ -48,9 +47,9 @@ export function fetch(url,params={}){
     .then(response => {
       resolve(response.data);
     })
-    .catch(err => {
-      reject(err)
-    })
+    // .catch(err => {
+    //   // reject(err)
+    // })
   })
 }
 
