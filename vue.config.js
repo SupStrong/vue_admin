@@ -1,7 +1,7 @@
-module.exports = {
-  outputDir: 'dist',
-  publicPath: ''
-}
+// module.exports = {
+  // outputDir: 'dist',
+  // publicPath: ''
+// }
 module.exports = {
     lintOnSave: false
 }

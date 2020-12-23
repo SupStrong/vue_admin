@@ -73,6 +73,16 @@ const routes = [
                 path: '/User/list',
                 name: '创建商品',
                 component: () => import('./pages/User/list.vue'),
+            },
+            {
+                path: '/banner/list',
+                name: '创建商品',
+                component: () => import('./pages/Banner/list.vue'),
+            },
+            {
+                path: '/banner/details',
+                name: '创建商品',
+                component: () => import('./pages/Banner/details.vue'),
             }
         ]
     }

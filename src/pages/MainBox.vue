@@ -169,6 +169,20 @@ export default {
               icon: "location",
             },
           ]
+        },
+        // 用户分组
+        {
+          label: "杂七杂八",
+          path: "/banner",
+          icon: "location",
+          children: [
+            {
+              label: "轮播图",
+              path: "/banner/list",
+              name: "bannersList",
+              icon: "location",
+            },
+          ]
         }
 
       ],
