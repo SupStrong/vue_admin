@@ -7,7 +7,9 @@
 export default {
   name: "app",
   data() {
-    return {};
+    return {
+      // 13.250.177.223
+    };
   },
 };
 </script>
