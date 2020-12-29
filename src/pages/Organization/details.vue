@@ -31,7 +31,10 @@
           mobile:'',
         },
         rules: {
-          name: [{ required: true, message: "请输入活动名称", trigger: "blur" }]
+          name: [{ required: true, message: "请输入机构名称", trigger: "blur" }],
+          city: [{ required: true, message: "请输入活动城市", trigger: "blur" }],
+          address: [{ required: true, message: "请输入详细地址", trigger: "blur" }],
+          mobile: [{ required: true, message: "请输入联系方式", trigger: "blur" }],
         }
       }
     },
@@ -44,7 +47,7 @@
     methods: {
         //   编辑 获取数据
       editGetData(id){
-          this.$fetch(`/api/articles/${id}`)
+          this.$fetch(`/api/protect/${id}`)
           .then((response) => {
             if(response.status){
               this.form = response.data;
@@ -63,7 +66,7 @@
         });
       },
       funEditData(currentId){
-        this.$put(`/api/articles/${currentId}`,this.form)
+        this.$put(`/api/protect/${currentId}`,this.form)
         .then((response) => {
           let {status,message} = response;
           if(status){
@@ -73,7 +76,7 @@
         })
       },
       funCreateData(){
-        this.$post('/api/articles',this.form)
+        this.$post('/api/protect',this.form)
         .then((response) => {
           let {status,message} = response;
           if(status){
