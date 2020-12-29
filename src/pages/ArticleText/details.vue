@@ -69,7 +69,7 @@
           </video>
           <i class="el-icon-plus"></i>
         </el-upload>
-        <P class="text">请保证视频格式正确，且不超过10M</P>
+        <p class="text">请保证视频格式正确，且不超过10M</p>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit('form')">立即创建</el-button>
