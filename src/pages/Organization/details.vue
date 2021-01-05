@@ -39,15 +39,15 @@
       }
     },
     mounted(){
-      let id = this.$route.params.id;
+      let id = this.$route.query.id;
       if(id != 0){
-        // this.editGetData(id);
+        this.editGetData(id);
       }
     },
     methods: {
         //   编辑 获取数据
       editGetData(id){
-          this.$fetch(`/api/protect/${id}`)
+          this.$fetch(`/api/animal_protect/${id}`)
           .then((response) => {
             if(response.status){
               this.form = response.data;
@@ -58,7 +58,8 @@
           console.log(formName);
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            let currentId = this.$route.params.id;
+            let currentId = this.$route.query.id;
+            console.log(this.$route.query);
             currentId != 0 ?  this.funEditData(currentId) : this.funCreateData();
           } else {
             return false;
@@ -66,7 +67,7 @@
         });
       },
       funEditData(currentId){
-        this.$put(`/api/protect/${currentId}`,this.form)
+        this.$put(`/api/animal_protect/${currentId}`,this.form)
         .then((response) => {
           let {status,message} = response;
           if(status){
@@ -76,7 +77,7 @@
         })
       },
       funCreateData(){
-        this.$post('/api/protect',this.form)
+        this.$post('/api/animal_protect',this.form)
         .then((response) => {
           let {status,message} = response;
           if(status){
@@ -87,7 +88,7 @@
       },
       routerPath(){
         this.$router.push({
-          path: '/articleText/list', 
+          path: '/Organization/list', 
           query: {}
         });
       }

@@ -4,7 +4,7 @@
       <el-aside width="initial">
         <div class="logo">
           <span v-if="isCollapse">admin</span>
-          <img v-else src="../assets/images/icon_logo.png" />
+          <!-- <img v-else src="../assets/images/icon_logo.png" /> -->
         </div>
         <el-menu
           router

@@ -29,62 +29,8 @@
         </el-table-column>
         <el-table-column
           fixed
-          prop="grade"
-          label="濒危等级"
-          width="150">
-        </el-table-column>
-        <el-table-column
-          fixed
-          prop="alias"
-          label="别名"
-          width="150">
-        </el-table-column>
-        <el-table-column
-          fixed
-          prop="subject"
-          label="学科"
-          width="150">
-        </el-table-column>
-        <el-table-column
-          fixed
-          prop="origin"
-          label="产地"
-          width="150">
-        </el-table-column>
-        <el-table-column
-          fixed
-          prop="distributionarea"
-          label="分布区域"
-          width="150">
-        </el-table-column>
-        <el-table-column
-          fixed
-          prop="features"
-          label="体态特征"
-          width="150">
-        </el-table-column>
-        <el-table-column
-          fixed
-          prop="catalog"
-          label="目"
-          width="150">
-        </el-table-column>
-        <el-table-column
-          fixed
-          prop="extinctionTime"
-          label="灭绝时间"
-          width="150">
-        </el-table-column>
-         <el-table-column
-          fixed
-          prop="reproductionMode"
-          label="繁殖方式"
-          width="150">
-        </el-table-column>
-        <el-table-column
-          fixed
-          prop="ProtectionOrganize"
-          label="保护组织"
+          prop="title"
+          label="标题"
           width="150">
         </el-table-column>
         <el-table-column
