@@ -11,7 +11,7 @@
     </div>
     <div class="G-col-main G-content-main">
       <el-row class="G-M-top-10 G-M-bottom-10">
-          <el-button type="primary"><router-link :to="{path:'/articleText/details/0'}">创建文章</router-link></el-button>
+          <el-button type="primary"><router-link :to="{path:'/animal/details',query:{id:0}}">创建动物信息</router-link></el-button>
          <el-button type="success">数据详情</el-button>
       </el-row>
       <el-table

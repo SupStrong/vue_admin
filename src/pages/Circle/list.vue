@@ -2,58 +2,59 @@
   <div>
     <div class="G-col-main">
       <el-row :gutter="20">
-        <el-col :span="6"><el-input v-model="input" placeholder="请输入内容"></el-input></el-col>
-        <el-col :span="6"><el-input v-model="input" placeholder="请输入内容"></el-input></el-col>
+        <el-col :span="5"><el-input v-model="input" placeholder="请输入内容"></el-input></el-col>
+        <el-col :span="5"><el-input v-model="input" placeholder="请输入内容"></el-input></el-col>
         <el-col :span="12">
-          <el-button type="primary">主要按钮</el-button>
-          <el-button type="primary">主要按钮</el-button>
+          <el-button type="primary">搜索</el-button>
         </el-col>
       </el-row>
     </div>
-    <div class="G-col-main G-M-top-10">
-      <el-row>
-          <el-button type="primary"><router-link :to="{path:'/articleText/details'}">创建文章</router-link></el-button>
+    <div class="G-col-main G-content-main">
+      <el-row class="G-M-top-10 G-M-bottom-10">
+          <el-button type="primary"><router-link :to="{path:'/circle/details',query:{id:0}}">创建动物信息</router-link></el-button>
          <el-button type="success">数据详情</el-button>
       </el-row>
       <el-table
         class="G-M-top-15"
         :data="tableData"
         border
-        height="600px"
         style="width: 100%">
         <el-table-column
-          fixed
+          prop="id"
+          label="文章id"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          prop="type"
+          label="类型"
+          width="100">
+        </el-table-column>
+        <el-table-column
           prop="name"
-          label="名称"
-          width="150">
+          label="圈子名">
         </el-table-column>
         <el-table-column
-          fixed
           prop="title"
-          label="标题"
-          width="150">
+          label="圈子详情">
         </el-table-column>
-        <el-table-column
-          fixed="right"
+                <el-table-column
           label="操作"
           width="100">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-            <el-button type="text" size="small">编辑</el-button>
+            <el-button type="text" size="small">
+            <router-link class="G-color-409EFF" :to="{path:`/circle/details/${scope.row.id}`}">编辑</router-link>
+            <el-popconfirm title="手别抖!看清楚." @confirm="deleteText(scope.row.id)">
+              <span class="G-M-left-5" slot="reference">删除</span>
+            </el-popconfirm>
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination
-        background
-        class="G-M-top-15 G-align-right"
-        layout="prev, pager, next"
-        :total="1000">
-      </el-pagination>
+      <Page :all="count" :page="page" @CurrentPage="getCurrentPage"></page>
     </div>
   </div>
 </template>
 <script>
-// import editors from '../../components/asstes/edit.vue';i
 export default {
   data() {
       return {
@@ -68,37 +69,53 @@ export default {
           resource: '',
           desc: ''
         },
-        tableData: [{
-          id:'',
-          name:'大熊猫',
-          grade:'保护级别',
-          alias:'别名',
-          subject:'学科',
-          origin:'起源 产地',
-          catalog:'目录',
-          images:[],
-          behavior:'行为特征',
-          features:'体态特征',
-          distributionarea:'分布区域',
-          environment:'栖息环境',
-          value:'主要价值',
-          extinctionTime:'灭绝时间',
-          reproductionMode:'繁殖方式',
-          PopulationStatus:'种群现状',
-          ProtectionOrganize:'保护组织',
-          movies:[{
-
-          }]
-        }]
+        page:"1",
+        limit:"20",
+        tableData: []
       }
     },
   name:'one',
   components: {
-    // editors
   },
   mounted(){
+    this.getData();
   },
   methods:{
+    changeSwitch(row){
+      let switchId = row.id;
+      this.$patch(`/api/animal_circles/${switchId}`,{status:row.status})
+        .then((response) => {
+          let {status,message} = response;
+          if(status){
+             this.$message(message);
+          }
+      })
+    },
+    deleteText(c_id){
+      this.$del(`/api/animal_circles/${c_id}`)
+        .then((response) => {
+          let {status,message} = response;
+          if(status){
+             this.$message(message);
+             this.tableData = this.tableData.filter(item => item.id !== c_id)
+          }
+      })
+    },
+    getData(){
+      let params = {
+        page:this.page,
+        limit:this.limit
+      }
+      this.$fetch('/api/animal_circles',params)
+        .then((response) => {
+          this.count = response.count;
+          this.tableData = response.rows;
+      })
+    },
+    getCurrentPage(val){
+      this.page = val;
+      this.getData();
+    }
   },
   computed: {
   }
@@ -106,7 +123,6 @@ export default {
 </script>
 <style>
   .el-row {
-    margin-top:10px;
   }
   .el-col {
     border-radius: 4px;

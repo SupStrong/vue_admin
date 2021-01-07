@@ -1,67 +1,132 @@
 <template>
     <div class="G-col-main G-content-main">
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="文章标题">
-          <el-input  v-model="form.title"></el-input>
+        <el-form-item label="动物名字">
+          <el-input  v-model="form.name"></el-input>
         </el-form-item>
-        <el-form-item label="作者">
-          <el-select v-model="form.author" placeholder="请选择作者">
-            <el-option label="小猪" value="小猪"></el-option>
-            <el-option label="小狗" value="小狗"></el-option>
+        <el-form-item label="别名">
+          <el-input  v-model="form.alias"></el-input>
+        </el-form-item>
+        <el-form-item label="圈子">
+          <el-select v-model="form.c_id" placeholder="圈子">
+            <el-option v-for="(item,index) in circlelist" :key="index" :label=item.name value="1"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="分类">
-          <el-select v-model="form.group" placeholder="请选择分类">
-            <el-option label="科普知识" value="1"></el-option>
-            <el-option label="萌宠玩具" value="2"></el-option>
-            <el-option label="萌宠美食" value="3"></el-option>
-            <el-option label="养宠贴士" value="4"></el-option>
-            <el-option label="风味肉食" value="5"></el-option>
+        <el-form-item label="相册">
+          <el-input  v-model="form.imags"></el-input>
+        </el-form-item>
+        <el-form-item label="保护级别">
+          <el-select v-model="form.protectlevel" placeholder="请选择保护级别">
+            <el-option label="一级保护动物" value="一级保护动物"></el-option>
+            <el-option label="二级保护动物" value="二级保护动物"></el-option>
+            <el-option label="濒危保护动物" value="濒危保护动物"></el-option>
+            <el-option label="灭绝动物" value="灭绝动物"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="活动时间">
-          <el-col>
-            <el-date-picker type="date" placeholder="选择日期" v-model="form.date1"></el-date-picker>
-            <span>-</span>
-            <el-time-picker placeholder="选择时间" v-model="form.date2"></el-time-picker>
-          </el-col>
+        <el-form-item label="栖息地">
+          <el-input  v-model="form.habitat"></el-input>
         </el-form-item>
-        <el-form-item label="营销类型">
-         <el-radio-group v-model="form.type" @change="tabType($event)">
-          <el-radio :label="1">文章</el-radio>
-          <el-radio :label="2">视频</el-radio>
-        </el-radio-group>
+        <el-form-item label="分布地区">
+          <el-input  v-model="form.area"></el-input>
         </el-form-item>
-        <el-form-item label="状态">
-          <el-switch 
-            v-model="form.status"
-            active-color="#13ce66"
-          ></el-switch>
-        </el-form-item>
-        <el-form-item label="标签">
-          <el-checkbox v-model="checked" value="1">备选项</el-checkbox>
-          <el-checkbox v-model="checked" value="2">备选项</el-checkbox>
-          <el-checkbox v-model="checked" value="3">备选项</el-checkbox>
-        </el-form-item>
-        <el-form-item label="关联">
-          <el-select v-model="form.group" placeholder="请选择关联">
-            <el-option label="科普知识" value="1"></el-option>
-            <el-option label="萌宠玩具" value="2"></el-option>
-            <el-option label="萌宠美食" value="3"></el-option>
-            <el-option label="养宠贴士" value="4"></el-option>
-            <el-option label="风味肉食" value="5"></el-option>
+        <el-form-item label="界">
+          <el-select v-model="form.circles" placeholder="请选择保护级别">
+            <el-option label="动物界" value="动物界"></el-option>
+            <el-option label="植物界" value="植物界"></el-option>
+            <el-option label="微生物界" value="微生物界"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="详情" v-if="form.type == 1">
+        <el-form-item label="门">
+          <el-select v-model="form.door" placeholder="请选择保护级别">
+            <el-option label="动物界" value="动物界"></el-option>
+            <el-option label="植物界" value="植物界"></el-option>
+            <el-option label="微生物界" value="微生物界"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="	亚 门">
+          <el-input  v-model="form.amen"></el-input>
+        </el-form-item>
+        <el-form-item label="纲">
+          <el-input  v-model="form.outline"></el-input>
+        </el-form-item>
+        <el-form-item label="	亚 纲">
+          <el-input  v-model="form.subclass"></el-input>
+        </el-form-item>
+        <el-form-item label="目">
+          <el-input  v-model="form.eye"></el-input>
+        </el-form-item>
+        <el-form-item label="	亚 目">
+          <el-input  v-model="form.suborder"></el-input>
+        </el-form-item>
+        <el-form-item label="科">
+          <el-input  v-model="form.section"></el-input>
+        </el-form-item>
+        <el-form-item label="	亚 科">
+          <el-input  v-model="form.subfamily"></el-input>
+        </el-form-item>
+        <el-form-item label="属">
+          <el-input  v-model="form.genus"></el-input>
+        </el-form-item>
+        <el-form-item label="种">
+          <el-input  v-model="form.species"></el-input>
+        </el-form-item>
+        <el-form-item label="生活环境">
+          <el-select v-model="form.life" placeholder="生活环境">
+            <el-option label="" value="0"></el-option>
+            <el-option label="陆生动物" value="1"></el-option>
+            <el-option label="水生动物" value="2"></el-option>
+            <el-option label="两栖动物" value="3"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="等级">
+          <el-select v-model="form.level" placeholder="等级">
+            <el-option label="高等动物" value="1"></el-option>
+            <el-option label="低等动物" value="2"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="食性">
+        <el-checkbox-group v-model="form.foodhabit">
+          <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
+        </el-checkbox-group>
+        </el-form-item>
+        <el-form-item label="哺乳动物">
+          <el-select v-model="form.breastfeed" placeholder="哺乳动物">
+            <el-option label="哺乳动物" value="1"></el-option>
+            <el-option label="非哺乳动物" value="2"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="形态">
+          <el-select v-model="form.shape" placeholder="形态">
+            <el-option label="脊椎动物" value="1"></el-option>
+            <el-option label="无脊椎动物" value="2"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="灭绝原因">
+          <!-- <el-input  type="textarea" v-model="form.extinct"></el-input> -->
           <editors @input="change($event)"></editors>
         </el-form-item>
-        <el-form-item label="视频上传" prop="Video" v-else>
-          <!-- action必选参数, 上传的地址 -->
-            <el-upload class="avatar-uploader el-upload--text" action="/api/upload/video" list-type="picture-card" :show-file-list="false" :on-success="handleVideoSuccess" :before-upload="beforeUploadVideo" :on-progress="uploadVideoProcess">
-                <video v-if="videoForm.Video !='' && videoFlag == false" :src="videoForm.Video" class="avatar" controls="controls">您的浏览器不支持视频播放</video>
-                <i class="el-icon-plus"></i>
-            </el-upload>
-            <P class="text">请保证视频格式正确，且不超过10M</P>
+        <el-form-item label="习性">
+          <!-- <el-input  v-model="form.habit"></el-input> -->
+          <editors @input="change($event)"></editors>
+        </el-form-item>
+        <el-form-item label="分布详情">
+          <!-- <el-input  v-model="form.distribution"></el-input> -->
+          <editors @input="change($event)"></editors>
+        </el-form-item>
+        <el-form-item label="繁殖详情">
+          <!-- <el-input  v-model="form.reproduction"></el-input> -->
+          <editors @input="change($event)"></editors>
+        </el-form-item>
+        <el-form-item label="饮食习惯">
+          <!-- <el-input  v-model="form.diet"></el-input> -->
+          <editors @input="change($event)"></editors>
+        </el-form-item>
+        <el-form-item label="历史记录">
+          <!-- <el-input  v-model="form.history"></el-input> -->
+          <editors @input="change($event)"></editors>
+        </el-form-item>
+        <el-form-item label="外形特征">
+          <editors @input="change($event)"></editors>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit('form')">立即创建</el-button>
@@ -81,17 +146,41 @@ import editors from '../../components/asstes/edit';
           videoUploadId:"",
           video:''
         },
+        circlelist:[],
+        cities:['肉食性动物','植食性动物','腐食性动物','杂食性动物'],
         form: {
-          title: '',
-          author:'',
-          group:'',
-          date1:'',
-          date2:'',
-          type: 1,
-          status:false,
-          tags:[],
-          textarea:'',
-        },
+          "id": "动物id",
+          "c_id": "圈子id",
+          "name": "动物名字",
+          "alias": "别名",
+          "imags": "相册",
+          "protectlevel": "保护级别",
+          "habitat": "栖息地",
+          "area": "分布地区",
+          "circles": "界",
+          "door": "门",
+          "amen": "亚 门",
+          "outline": "纲",
+          "subclass": "亚  纲",
+          "eye": "目",
+          "suborder": "亚   目",
+          "section": "科",
+          "subfamily": "亚   科",
+          "genus": "属",
+          "species": "种",
+          "habit": "习性",
+          "distribution": "分布详情",
+          "reproduction": "繁殖详情",
+          "diet": "饮食习惯",
+          "history": "历史记录",
+          "extinct": "灭绝原因",
+          "life": "水生动物",
+          "level": "低等动物",
+          "foodhabit": ['肉食性动物'],
+          "breastfeed": "非哺乳动物",
+          "shape": "脊椎动物",
+          "features": "外形特征",
+      },
         rules: {
           name: [
             { required: true, message: '请输入活动名称', trigger: 'blur' },
@@ -120,9 +209,10 @@ import editors from '../../components/asstes/edit';
     },
     mounted(){
       let id = this.$route.params.id;
-      if(id != 0){
-        this.editGetData(id);
-      }
+      // if(id != 0){
+      //   this.editGetData(id);
+      // }
+      this.getCircleList();
     },
     methods: {
       change(e){
@@ -167,6 +257,12 @@ import editors from '../../components/asstes/edit';
       //     }
       //   })
       // },
+      getCircleList(){
+        this.$fetch('/api/animal_circles')
+        .then((response) => {
+          this.circlelist = response.rows;
+        })
+      },
       beforeUploadVideo(file) {
         const isLt10M = file.size / 1024 / 1024  < 10;
         if (['video/mp4', 'video/ogg', 'video/flv','video/avi','video/wmv','video/rmvb'].indexOf(file.type) == -1) {
